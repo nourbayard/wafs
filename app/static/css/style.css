@@ -79,6 +79,26 @@ body > nav > ul li a {
 	text-align: center;
 }
 
+#pokemon-detail h2 {
+	font-size: 4rem;
+	text-align: center;
+}
+
+#pokemon-detail {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#pokemon-detail h2:first-letter {
+	text-transform: uppercase;
+}
+
+#pokemon-detail img {
+	width: 50%;
+}
+
 .hidden {
 	display: none;
 	visibility: hidden;

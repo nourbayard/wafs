@@ -12,8 +12,70 @@
 	}
 	const router = {
 		init() {
-			window.addEventListener('hashchange', () => {
-				sections.toggle(helpers.splitHash(location.hash))
+			routie({
+				'home': function() {
+					sections.toggle(helpers.splitHash(location.hash))
+				},
+				'pokemon': function() {
+					sections.toggle(helpers.splitHash(location.hash))
+
+					const fetchPokeList = async () => 
+					await (await fetch('https://pokeapi.co/api/v2/pokemon/?limit=151')).json()
+				
+					fetchPokeList()
+						.then((data) => {
+							const datas = data.results
+
+							const directives = {
+								name: {
+									href() {
+										return `#pokemon/${this.name}`
+									}
+								}
+							}
+
+							let dataPokemon = datas.map(function (i) {
+								return {
+									name: i.name,
+									url: i.url
+								}
+							})
+
+							var el = document.querySelector('#pokemon-list')
+							Transparency.render(el, datas, directives)
+						})
+						.catch(reason => console.log(reason.message))
+				},
+				'pokemon/?:name': function() {			
+					let pokemonName = helpers.splitSlash(location.hash)
+
+					console.log(pokemonName)
+					const fetchPokeList = async () => 
+					await (await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)).json()
+
+					fetchPokeList().then((data) => {
+						const directives = {
+							sprite: {
+								src() {
+									return `${this.sprite}`
+								}
+							}
+						}
+
+						const pokeDetails = {
+							name: data.name,
+							id: data.id,
+							sprite: data.sprites.front_default
+						}
+
+						console.log(data.sprites.front_default)
+						sections.toggle(helpers.splitHash(location.hash))
+
+						document.querySelector('#pokemon-detail').classList.remove('hidden')
+						console.log(data)
+						Transparency.render(document.querySelector('#pokemon-detail'), pokeDetails, directives)
+					})
+				}
 			})
 		},
 		checkHash() {
@@ -26,12 +88,12 @@
 	}
 	const sections = {
 		init() {
-			settings.sections.forEach(function(el) {
+			settings.sections.forEach((el) => {
 				el.classList.add('hidden')
 			})
 		},
 		toggle(route) {
-			settings.sections.forEach(function(el) {
+			settings.sections.forEach((el) => {
 				if (el.id === route) {
 					el.classList.remove('hidden')
 				} else {
@@ -44,6 +106,9 @@
 	const helpers = {
 		splitHash(hash) {
 			return hash.split('#')[1]
+		},
+		splitSlash(slash) {
+			return slash.split('/')[1]
 		}
 	}
 	app.init()

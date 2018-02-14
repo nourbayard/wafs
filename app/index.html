@@ -15,7 +15,7 @@
 				<a href="#home">Start</a>
 			</li>
 			<li>
-				<a href="#practices">Best Practices</a>
+				<a href="#pokemon">Pokemon</a>
 			</li>
 		</ul>
 	</nav>
@@ -25,10 +25,25 @@
 			<p>Welkom op de SPA pagina.</p>
 		</section>
 
-	<section id="practices">
-		<h2>Best Practices</h2>
+	<section id="pokemon">
+		<h2>All Pokemon</h2>
+		<ul id='pokemon-list'>
+			<li>
+				<a data-bind='name'></a>
+				<a data-bind='url'></a>
+				<img src="" alt="">
+			</li>
+		</ul>
 	</section>
 
+	<section id="pokemon-detail">
+		<h2 data-bind='name'></h2>
+		<p data-bind="id"></p>
+		<img data-bind="sprite" src="" alt="">
+	</section>
+
+	<script src="./static/js/routie.js"></script>
 	<script src="./static/js/app.js"></script>
+	<script src="https://rawgit.com/leonidas/transparency/master/dist/transparency.min.js"></script>
 </body>
 </html>
