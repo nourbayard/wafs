@@ -40,23 +40,22 @@
 								}
 							})
 
-							var el = document.querySelector('#pokemon-list')
-							Transparency.render(el, dataPokemon, directives)
+							Transparency.render(document.querySelector('#pokemon-list'), dataPokemon, directives)
 						})
 						.catch(reason => console.log(reason.message))
 				},
 				'pokemon/?:name': function(name) {
-					let pokemonName = name
-
-					console.log(pokemonName)
 					const fetchPokeList = async () =>
-						await (await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)).json()
+						await (await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)).json()
 
 					fetchPokeList().then((data) => {
 						const directives = {
 							sprite: {
 								src() {
 									return `${this.sprite}`
+								},
+								alt() {
+									return `A sprite image of the pokemon ${this.name}`
 								}
 							}
 						}
@@ -67,11 +66,10 @@
 							sprite: data.sprites.front_default
 						}
 
-						sections.toggle(helpers.splitHash(location.hash))
+						sections.toggle(name)
 
 						document.querySelector('#pokemon-detail').classList.remove('hidden')
 						console.log(data)
-						console.log(name)
 						Transparency.render(document.querySelector('#pokemon-detail'), pokeDetails, directives)
 					})
 				}
