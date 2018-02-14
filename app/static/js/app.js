@@ -1,4 +1,4 @@
-{
+(function() {
 	'use strict'
 	const settings = {
 		sections: document.querySelectorAll('section')
@@ -19,12 +19,11 @@
 				'pokemon': function() {
 					sections.toggle(helpers.splitHash(location.hash))
 
-					const fetchPokeList = async () => 
-					await (await fetch('https://pokeapi.co/api/v2/pokemon/?limit=151')).json()
-				
+					const fetchPokeList = async () =>
+						await (await fetch('https://pokeapi.co/api/v2/pokemon/?limit=151')).json()
+
 					fetchPokeList()
 						.then((data) => {
-							const datas = data.results
 
 							const directives = {
 								name: {
@@ -34,7 +33,7 @@
 								}
 							}
 
-							let dataPokemon = datas.map(function (i) {
+							let dataPokemon = data.results.map(function(i) {
 								return {
 									name: i.name,
 									url: i.url
@@ -42,16 +41,16 @@
 							})
 
 							var el = document.querySelector('#pokemon-list')
-							Transparency.render(el, datas, directives)
+							Transparency.render(el, dataPokemon, directives)
 						})
 						.catch(reason => console.log(reason.message))
 				},
-				'pokemon/?:name': function() {			
-					let pokemonName = helpers.splitSlash(location.hash)
+				'pokemon/?:name': function(name) {
+					let pokemonName = name
 
 					console.log(pokemonName)
-					const fetchPokeList = async () => 
-					await (await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)).json()
+					const fetchPokeList = async () =>
+						await (await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)).json()
 
 					fetchPokeList().then((data) => {
 						const directives = {
@@ -68,11 +67,11 @@
 							sprite: data.sprites.front_default
 						}
 
-						console.log(data.sprites.front_default)
 						sections.toggle(helpers.splitHash(location.hash))
 
 						document.querySelector('#pokemon-detail').classList.remove('hidden')
 						console.log(data)
+						console.log(name)
 						Transparency.render(document.querySelector('#pokemon-detail'), pokeDetails, directives)
 					})
 				}
@@ -112,4 +111,4 @@
 		}
 	}
 	app.init()
-}
+})()

@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>SPA</title>
 	<link rel="stylesheet" href="./static/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
 </head>
 <body>
 
@@ -21,16 +22,17 @@
 	</nav>
 
 	<section id='home'>
-			<h1>Start</h1>
+			<h1>Poké-Dex</h1>
 			<p>Welkom op de SPA pagina.</p>
 		</section>
 
 	<section id="pokemon">
 		<h2>All Pokemon</h2>
+		<input type="text">
 		<ul id='pokemon-list'>
 			<li>
 				<a data-bind='name'></a>
-				<a data-bind='url'></a>
+				<!-- <a data-bind='url'></a> -->
 				<img src="" alt="">
 			</li>
 		</ul>
@@ -38,7 +40,7 @@
 
 	<section id="pokemon-detail">
 		<h2 data-bind='name'></h2>
-		<p data-bind="id"></p>
+		<!-- <p data-bind="id"></p> -->
 		<img data-bind="sprite" src="" alt="">
 	</section>
 
