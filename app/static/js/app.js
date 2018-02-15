@@ -14,10 +14,10 @@
 		init() {
 			routie({
 				'home': function() {
-					sections.toggle(helpers.splitHash(location.hash))
+					sections.toggle("home")
 				},
 				'pokemon': function() {
-					sections.toggle(helpers.splitHash(location.hash))
+					sections.toggle("pokemon")
 
 					const fetchPokeList = async () =>
 						await (await fetch('https://pokeapi.co/api/v2/pokemon/?limit=151')).json()
@@ -69,7 +69,6 @@
 						sections.toggle(name)
 
 						document.querySelector('#pokemon-detail').classList.remove('hidden')
-						console.log(data)
 						Transparency.render(document.querySelector('#pokemon-detail'), pokeDetails, directives)
 					})
 				}
