@@ -1,64 +1,92 @@
-// maak een object vd dingen in de opdracht
-// dit is een object literal - dit heeft key value pairs. in dit geval is init de key en function is de pair
-// create local scope - dus alle code die er staat, staat in de scope van de IIFE
-
 'use strict';
 
-const fetchAsync = async () =>
-await (await fetch('https://pokeapi.co/api/v2/pokemon/?limit=151')).json()
-
-fetchAsync()
-  .then((data) => {
-
-    console.log(data)
-  })
-  .catch(reason => console.log(reason.message))
-
-
-//console.log('global scope');
+console.log('global scope');
 (function(){
-  //Initialize application
+
+  const fetchAsync = async () =>
+  await (await fetch('https://pokeapi.co/api/v2/pokemon/?limit=151')).json()
+  fetchAsync()
+    .then((data) => {
+      console.log(data)
+    })
+    .catch(reason => console.log(reason.message))
+
+  console.log('var app works');
+
   var app = {
-    //hieronder is een method
     init: function(){
-      //console.log('app initialized');
-      //console.log(location.hash);
-      routes.init(); // hier in moet de hashchange
+      routes.init()
+      console.log('hallo')
     }
   }
 
-  // Handle routes and states
-var routes = {
-    init: function(){
-      // whats in the hash? / wat zit er in de link/# ?
-      var route = location.hash
-      sections.toggle(route)
+    var routes = {
+      //hieronder is een method
+      // render.all & render.detail
+      init: function(){
 
-      route != '' ? sections.toggle(route) : window.location.hash = '#pokemon'
-      window.addEventListener('hashchange', function() {
-          sections.toggle(window.location.hash)
-          // pakt de section met de # waar de link (aan het einde) naar veranderd
-      })
-}
-}
-
-
-
-
-  // Render toggle sections
-  var sections = {
-    toggle: function(route){
-
-      var elements = document.querySelectorAll('section');
-
-      // loop-ed door alle sections heen & adds class .hidden
-      elements.forEach(function(el){
-        '#' + el.id === route ? el.classList.remove('hidden') : el.classList.add('hidden')
-      })
+        routie({
+          'pokemon': function(){
+            console.log('hey this actually works!');
+          },
+          'details': function(){
+            api.getData()
+            console.log('and this works too!');
+          }
+        })
+      }
+      // api.init()
     }
-  }
 
-  // Start the application
-  //app.init app = object, init = method
+    var api = {
+      //.getData -> hier een XHR http req. doen ('get', [url])
+      // boven een ajax call doen
+      //xhr.onload() -> hier verwijzen naar de render functie in template
+      url: 'https://pokeapi.co/api/v2/pokemon/?limit=151',
+      key: 123456789,
+      getData: function(route){
+        // var xhr = new XMLHttpRequest('GET', url, true); // hier gaan we de ajax initieren + url meegeven
+        console.log('de route werkt');
+        var xhr = new XMLHttpRequest('GET', this.url+ '?api-key' +this.key, true); // hier gaan we de ajax initieren + url meegeven
+      }
+
+      // door naar collection eerst ?? maybe
+      // template.init();
+    }
+
+    // var collection = { // coll. obj aangemaakt 'database' waar je data in opslaat, daarin staat een filter methode in + data die je wil filteren // keyword ingevuld  in dat formulier
+    //   allStories: function(data){
+    //
+    //       template.render()
+    //   },
+    //
+    //   filter: function(data, keyword){
+    //     // data.filter(function(item){
+    //     //   return item.title === keyword;
+    //       // return item.title.contains(keyword);
+    //     });
+    //   }
+    //   // template.init()
+    // }
+
+    // var template = {
+    //  //.render(data)
+    //  //.toggle
+    //  template.render(data)
+    //
+    //   render: function(){
+    //
+    //   }
+    //
+    //   template.toggle(data)
+    //
+    //   toggle: function(){
+    //
+    //   }
+    //
+    // }
+
+
+
   app.init()
-})()
+})();
