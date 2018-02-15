@@ -78,6 +78,7 @@ console.log('global scope');
     //
     //   }
     //
+    //
     //   template.toggle(data)
     //
     //   toggle: function(){
