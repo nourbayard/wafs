@@ -38,6 +38,9 @@
 									name: i.name,
 									url: i.url
 								}
+							}).sort((a, b) => {
+								if(a.name < b.name) return -1;
+								if(a.name > b.name) return 1;
 							})
 
 							Transparency.render(document.querySelector('#pokemon-list'), dataPokemon, directives)
