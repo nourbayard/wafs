@@ -38,9 +38,16 @@
 									name: i.name,
 									url: i.url
 								}
-							}).sort((a, b) => {
-								if(a.name < b.name) return -1;
-								if(a.name > b.name) return 1;
+							}).sort((a, b) => a.name.localeCompare(b.name))
+
+							const pokemonInput = document.querySelector('#pokemon > input')
+
+							pokemonInput.addEventListener('keyup', (e) => {
+								const filteredPokemon = dataPokemon.filter((x, i) => {
+									return x.name.startsWith(e.target.value)
+								})
+								console.log(filteredPokemon)
+								Transparency.render(document.querySelector('#pokemon-list'), filteredPokemon, directives)
 							})
 
 							Transparency.render(document.querySelector('#pokemon-list'), dataPokemon, directives)
@@ -58,6 +65,7 @@
 									return `${this.sprite}`
 								},
 								alt() {
+									// still providing a dynamic alt
 									return `A sprite image of the pokemon ${this.name}`
 								}
 							}
