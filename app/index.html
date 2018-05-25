@@ -1,6 +1,3 @@
-<!--- best practices staan in de slides --->
-<!-- Hash = # / visibility toggelen dmv # verandering (dus on-page link) met class.active ding -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,49 +5,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>SPWA</title>
+  <title>Online Pokédex</title>
 
   <link rel="stylesheet" href="static/css/styles.min.css">
 </head>
 
 <body>
   <div id="container">
-    <section id="start">
-      <h1>Start</h1>
-      <p>what did the unhappy cow say at the play</p>
+    <section id="home">
+      <h1>Pokemon overview</h1>
+      <!-- <p>what did the unhappy cow say at the play</p> -->
+
+
+      <div class="error gone" id="error">
+        <p>An error has occured. Please check your internet connection and try again. If this error keeps coming up, the API or your wifi could be offline. Check avaiblility <a href="http://https://www.pokeapi.co/">Here</a></p>
+      </div>
+
+      <div class="timeOut gone">
+        <p>An error has occured. Please check your internet connection and try again.</p>
+      </div>
+
+      <p>
+        Welcome to the online Pokédex. Need information about a Pokémon? Start your knowledge here!
+      </p>
+
+
+      <label>
+          <input type="text" id="myInput" placeholder="Search for a Pokémon.." title="Type in a Pokémon">
+        </label>
+
+      <div class="loading">
+        <p>Loading list...</p>
+      </div>
+
+      <!-- dit is de hele lijst met pokemons op de homepage -->
+
+      <ol id="list"></ol>
     </section>
 
     <main>
-      <section id="bestpractices">
-        <h1>Best practices</h1>
-        <p>moooooooooo</p>
-      </section>
+      <section id="details">
+        <h1>Pokemon details</h1>
 
-      <section id="betterpractices">
-        <h1>Better practices</h1>
-        <p>yhbfhbsdjhdbjhsbdjhbds</p>
-      </section>
-      <section id="goodpractices">
-        <h1>good practices</h1>
-        <p>nuuuhhsdifuhsdhds</p>
-      </section>
-      <section id="newpractices">
-        <h1>new practices</h1>
-        <p>dfjhbfdhbf</p>
+        <div class="error gone" id="error">
+          <p>An error has occured. Please check your internet connection and try again. If this error keeps coming up, the API or your wifi could be offline. Check avaiblility <a href="http://https://www.pokeapi.co/">Here</a></p>
+        </div>
+
+        <div class="timeOut gone">
+          <p>An error has occured. Please check your internet connection and try again.</p>
+        </div>
+
+
+        <a href="/app/">Back to the overview</a>
+
+
+        <!-- in #information zit alle pokemon informatie -->
+        <article id="information">
+        </article>
+
       </section>
     </main>
 
     <nav>
       <ul>
-        <li><a href="#start">Home</a></li>
-        <li><a href="#bestpractices">Best practices</a></li>
-        <li><a href="#betterpractices">Better practices</a></li>
-        <li><a href="#goodpractices">good practices</a></li>
-        <li><a href="#newpractices">new practices</a></li>
+        <li><a href="#home">pokemon first generation</a></li>
+        <li><a href="#details">details</a></li>
       </ul>
     </nav>
   </div>
 </body>
-<script type="text/javascript" src="static/js/script.js"></script>
+<script type="text/javascript" src="static/js/routie.js"></script>
+<script type="module" src="static/js/script.js"></script>
 
 </html>
