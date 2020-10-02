@@ -12,18 +12,19 @@ const api = {
 
         console.log(request.status);
         this.data = JSON.parse(request.responseText)
+
         var data = this.data.results
+        console.log(data);
 
         collection.content = data.map(function(d) {
-          // console.log(d);
           return {
             url: d.url,
             name: d.name
           }
         })
-
         renderHTML.pokemon();
       }
+      console.log('hallo')
     }
 
     request.onprogress = function() {

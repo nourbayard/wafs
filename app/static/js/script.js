@@ -47,11 +47,11 @@ import render from './renderHTML.js'
 
   routie({
     'home': function() {
-      api.firstCall('https://www.pokeapi.co/api/v2/pokemon/?limit=155')
+      api.firstCall('https://pokeapi.co/api/v2/pokemon/?limit=155')
     },
     'details/?:name': function(name) {
       console.log(name)
-      api.secondCall(`https://www.pokeapi.co/api/v2/pokemon/${name}`)
+      api.secondCall(`http://pokeapi.co/api/v2/pokemon/${name}`)
     }
   })
 

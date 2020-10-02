@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <title>Online Pokédex</title>
 
   <link rel="stylesheet" href="static/css/styles.min.css">
@@ -14,11 +15,9 @@
   <div id="container">
     <section id="home">
       <h1>Pokemon overview</h1>
-      <!-- <p>what did the unhappy cow say at the play</p> -->
-
 
       <div class="error gone" id="error">
-        <p>An error has occured. Please check your internet connection and try again. If this error keeps coming up, the API or your wifi could be offline. Check avaiblility <a href="http://https://www.pokeapi.co/">Here</a></p>
+        <p>An error has occured. Please check your internet connection and try again. If this error keeps coming up, the API or your wifi could be offline. Check avaiblility <a href="https://www.pokeapi.co/">Here</a></p>
       </div>
 
       <div class="timeOut gone">
@@ -26,12 +25,12 @@
       </div>
 
       <p>
-        Welcome to the online Pokédex. Need information about a Pokémon? Start your knowledge here!
+        Welcome to the online Pokédex. Need information about a Pokémon? Go ahead!
       </p>
 
 
       <label>
-          <input type="text" id="myInput" placeholder="Search for a Pokémon.." title="Type in a Pokémon">
+          <input type="text" id="myInput" placeholder="Search for a Pokémon" title="Type in a Pokémon">
         </label>
 
       <div class="loading">
@@ -41,6 +40,7 @@
       <!-- dit is de hele lijst met pokemons op de homepage -->
 
       <ol id="list"></ol>
+
     </section>
 
     <main>
@@ -56,8 +56,8 @@
         </div>
 
 
-        <a href="https://nourbayard.github.io/wafs/app/">Back to the overview</a>
-
+        <!-- <a href="https://nourbayard.github.io/wafs/app/">Back to the overview</a> -->
+        <a href="/app/index.html">Back to the overview</a>
 
         <!-- in #information zit alle pokemon informatie -->
         <article id="information">

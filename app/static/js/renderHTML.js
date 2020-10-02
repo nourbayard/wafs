@@ -5,14 +5,21 @@ const renderHTML = {
   pokemon: function() {
     var data = collection.content;
     var home = document.getElementById('list')
+    var imgLink = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/>'
 
     for (var i = 0; i < data.length; i++) {
       home.innerHTML += `
         <li>
           <a href= #details/${data[i].name} ><span>${data[i].name}</span></a>
-        </li>
       `
+      home.innerHTML += `</li>`
     }
+    // <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + `${data[i]}`>
+
+
+    // binnnen de for loop let var maken
+
+    //<img src="${}">
 
     var theInput = document.querySelector('#myInput')
     theInput.addEventListener('keyup', function myFunction() {
@@ -68,7 +75,12 @@ const renderHTML = {
     // <img src= ${detail.sprites.front_shiny_female} />
     // <img src= ${detail.sprites.back_shiny_female} />
 
+  },
+  render: function(pokemon) { // render pokemon image and name
+    this.elements.image.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id + 1}.png`
+
   }
+
 }
 
 export default renderHTML
